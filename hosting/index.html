@@ -4,7 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="license" content="MIT License">
-    <title>RTL Toggle Bookmarklet</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>🔄 RTL/LTR Toggle Bookmarklet - החלפת כיוון טקסט</title>
+    <meta name="title" content="🔄 RTL/LTR Toggle Bookmarklet - החלפת כיוון טקסט">
+    <meta name="description" content="כלי פשוט להחלפת כיוון טקסט בין RTL ו-LTR בכל דף אינטרנט. Simple tool to toggle text direction between RTL and LTR on any webpage.">
+    <meta name="keywords" content="RTL, LTR, text direction, Hebrew, Arabic, bookmarklet, toggle, web tool">
+    <meta name="author" content="Neuron Vision">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hebrew-rtl.web.app/">
+    <meta property="og:title" content="🔄 RTL/LTR Toggle Bookmarklet - החלפת כיוון טקסט">
+    <meta property="og:description" content="כלי פשוט להחלפת כיוון טקסט בין RTL ו-LTR בכל דף אינטרנט. Simple tool to toggle text direction between RTL and LTR on any webpage.">
+    <meta property="og:image" content="https://hebrew-rtl.web.app/og-image.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/svg+xml">
+    <meta property="og:site_name" content="RTL Toggle Bookmarklet">
+    <meta property="og:locale" content="he_IL">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hebrew-rtl.web.app/">
+    <meta property="twitter:title" content="🔄 RTL/LTR Toggle Bookmarklet - החלפת כיוון טקסט">
+    <meta property="twitter:description" content="כלי פשוט להחלפת כיוון טקסט בין RTL ו-LTR בכל דף אינטרנט. Simple tool to toggle text direction between RTL and LTR on any webpage.">
+    <meta property="twitter:image" content="https://hebrew-rtl.web.app/og-image.svg">
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔄</text></svg>">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="msapplication-TileColor" content="#667eea">
+    <meta name="msapplication-config" content="none">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -100,7 +134,10 @@
     <div class="container">
         <h1>🔄 החלפת RTL/LTR</h1>
         
-        <p>גרור את הכפתור הזה לסרגל הסימניות שלך כדי להחליף כיוון RTL/LTR בכל דף אינטרנט:</p>
+        <div class="demo-text" id="demoText">
+            <h3>נכון שזה מעצבן כשכיווני הטקסט מתחרבשים?</h3>
+            <p>כשיש עירוב של מספרים 1234 ומילים ב-English הטקסט נראה מבולבל. הכפתור הזה עוזר להחליף כיווני טקסט בקלות!</p>
+        </div>
         
         <a href="javascript:(function(){var d=document,b=d.body||d.documentElement,s=b.style,c=s.direction,r='rtl',l='ltr';if(c===r){s.direction=l;s.textAlign='left';localStorage.setItem('rtl-toggle','ltr');}else{s.direction=r;s.textAlign='right';localStorage.setItem('rtl-toggle','rtl');}var n=d.createElement('div');n.style.cssText='position:fixed;top:20px;right:20px;background:#667eea;color:white;padding:15px 25px;border-radius:30px;z-index:99999;font-family:Arial;font-size:16px;font-weight:bold;box-shadow:0 8px 25px rgba(0,0,0,0.3);';n.textContent='Direction: '+(s.direction===r?'RTL ←':'LTR →');d.body.appendChild(n);setTimeout(function(){n.remove();},2500);})();"
            class="bookmarklet-btn"
@@ -108,10 +145,9 @@
             🔄 החלפת RTL
         </a>
         
-        <div class="demo-text" id="demoText">
-            <h3>טקסט לדוגמה</h3>
-            <p>זהו טקסט לדוגמה להדגמת פונקציונליות החלפת RTL/LTR. כאשר אתה משתמש בסימניה בכל דף אינטרנט, היא תחליף בין כיוון טקסט משמאל לימין (LTR) ומימין לשמאל (RTL).</p>
-            <p>נסה לגרור את הכפתור למעלה לסרגל הסימניות שלך, ואז לחץ עליו כדי לראות את הקסם קורה!</p>
+        <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; margin: 15px 0; font-size: 14px; opacity: 0.9;">
+            <p style="margin: 0; direction: rtl; text-align: right;"><strong>מה זה <a href="https://en.wikipedia.org/wiki/Bookmarklet" style="color: #ffd93d; text-decoration: none;">Bookmarklet</a>?</strong> זה סימניה רגילה שמכילה קוד JavaScript. במקום לקחת אותך לדף חדש, היא מריצה פעולה על הדף הנוכחי - כמו להחליף כיוון טקסט!</p>
+            <p style="margin: 8px 0 0 0; direction: rtl; text-align: right; font-size: 13px; color: #ffd93d;"><strong>⚠️ אבטחה:</strong> סימניות יכולות להכיל קוד שמסכן את הפרטיות שלך. התקן רק אם אתה סומך על המקור!</p>
         </div>
         
         <div class="instructions" style="direction: rtl; text-align: right;">
