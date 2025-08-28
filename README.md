@@ -166,7 +166,7 @@ This project is open source and available under the [MIT License](LICENSE).
 If you have questions or need help:
 
 - **GitHub Issues**: [Create an issue](https://github.com/neuron-vision/rtl-bookmarklet/issues)
-- **Email**: ishay@neuron.vision
+- **Email**: rtl@neuron.vision
 - **Demo**: [Try it live](https://neuron-vision.github.io/rtl-bookmarklet)
 
 ---

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="license" content="MIT License">
     <title>RTL Toggle Bookmarklet</title>
     <style>
         body {
@@ -130,30 +131,33 @@
                 <li>עובד בכל דף אינטרנט</li>
             </ul>
         </div>
+        
+        <footer style="margin-top: 40px; padding: 20px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; font-size: 14px; opacity: 0.8;">
+            <p>📄 Licensed under <a href="LICENSE" style="color: #ffd93d; text-decoration: none;">MIT License</a> | 
+            <a href="https://github.com/neuron-vision/rtl-bookmarklet" style="color: #ffd93d; text-decoration: none;">View on GitHub</a></p>
+            <p style="margin-top: 10px; direction: rtl; text-align: center;">נוצר באהבה על ידי צוות <a href="https://neuron.vision" style="color: #ffd93d; text-decoration: none;">Neuron Vision</a></p>
+        </footer>
     </div>
 
     <script>
         // Demo functionality to show RTL/LTR toggle
         let isRTL = false;
         
+        const demoContent = `
+            <h3>נכון שזה מעצבן כשכיווני הטקסט מתחרבשים?</h3>
+            <p>כשיש עירוב של מספרים 1234 ומילים ב-English הטקסט נראה מבולבל. הכפתור הזה עוזר להחליף כיווני טקסט בקלות!</p>
+        `;
+        
         function toggleDemo() {
             const demoText = document.getElementById('demoText');
             isRTL = !isRTL;
             
+            demoText.innerHTML = demoContent;
+            
             if (isRTL) {
                 demoText.classList.add('rtl');
-                demoText.innerHTML = `
-                    <h3>טקסט לדוגמה עם מספרים 123 ו-English words</h3>
-                    <p>זהו טקסט לדוגמה להדגמת פונקציונליות החלפת RTL/LTR. כאשר אתה משתמש בסימניה בכל דף אינטרנט, היא תחליף בין כיוון טקסט משמאל לימין (LTR) ומימין לשמאל (RTL). הטקסט כולל מספרים 456 ו-English words כדי להדגים את ההבדל.</p>
-                    <p>נסה לגרור את הכפתור למעלה לסרגל הסימניות שלך, ואז לחץ עליו כדי לראות את הקסם קורה! זה עובד עם כל טקסט כולל מספרים 789 ו-English words.</p>
-                `;
             } else {
                 demoText.classList.remove('rtl');
-                demoText.innerHTML = `
-                    <h3>טקסט לדוגמה עם מספרים 123 ו-English words</h3>
-                    <p>זהו טקסט לדוגמה להדגמת פונקציונליות החלפת RTL/LTR. כאשר אתה משתמש בסימניה בכל דף אינטרנט, היא תחליף בין כיוון טקסט משמאל לימין (LTR) ומימין לשמאל (RTL). הטקסט כולל מספרים 456 ו-English words כדי להדגים את ההבדל.</p>
-                    <p>נסה לגרור את הכפתור למעלה לסרגל הסימניות שלך, ואז לחץ עליו כדי לראות את הקסם קורה! זה עובד עם כל טקסט כולל מספרים 789 ו-English words.</p>
-                `;
             }
         }
         
