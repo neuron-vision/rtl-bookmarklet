@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTL/LTR Toggle Bookmarklet - Standalone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .description {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .bookmarklet-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+            color: white;
+            padding: 20px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: grab;
+            user-select: none;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .bookmarklet-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, #ff5252 0%, #ff1744 100%);
+        }
+
+        .bookmarklet-btn:active {
+            cursor: grabbing;
+            transform: translateY(-1px);
+        }
+
+        .instructions {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .instructions h3 {
+            margin-bottom: 15px;
+            color: #ffd93d;
+            font-size: 1.3em;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+        }
+
+        .demo-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .demo-text {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            direction: ltr;
+            text-align: left;
+            border-left: 4px solid #667eea;
+        }
+
+        .demo-text.rtl {
+            direction: rtl;
+            text-align: right;
+            border-left: none;
+            border-right: 4px solid #667eea;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .feature h4 {
+            margin-bottom: 10px;
+            color: #ffd93d;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .bookmarklet-btn {
+                padding: 15px 30px;
+                font-size: 18px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 RTL/LTR Toggle Bookmarklet</h1>
+        
+        <p class="description">
+            A simple and powerful tool to toggle text direction between right-to-left (RTL) and left-to-right (LTR) on any webpage.
+        </p>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h4>One-Click Toggle</h4>
+                <p>Switch between RTL and LTR instantly</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🌍</div>
+                <h4>Works Everywhere</h4>
+                <p>Use on any webpage, no installation needed</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💾</div>
+                <h4>Remembers Settings</h4>
+                <p>Saves your preference automatically</p>
+            </div>
+        </div>
+
+        <a href="javascript:(function(){var d=document,b=d.body||d.documentElement,s=b.style,c=s.direction,r='rtl',l='ltr';if(c===r){s.direction=l;s.textAlign='left';localStorage.setItem('rtl-toggle','ltr');}else{s.direction=r;s.textAlign='right';localStorage.setItem('rtl-toggle','rtl');}var n=d.createElement('div');n.style.cssText='position:fixed;top:20px;right:20px;background:#667eea;color:white;padding:15px 25px;border-radius:30px;z-index:99999;font-family:Arial;font-size:16px;font-weight:bold;box-shadow:0 8px 25px rgba(0,0,0,0.3);';n.textContent='Direction: '+(s.direction===r?'RTL ←':'LTR →');d.body.appendChild(n);setTimeout(function(){n.remove();},2500);})();" 
+           class="bookmarklet-btn" 
+           draggable="true">
+            🔄 RTL Toggle
+        </a>
+
+        <div class="demo-section">
+            <h3>🎯 Demo</h3>
+            <div class="demo-text" id="demoText">
+                <h4>Mixed Text Example</h4>
+                <p>This is English text with numbers 123 and Hebrew words עברית. The bookmarklet will toggle the direction of this text when used on any webpage.</p>
+                <p>זהו טקסט בעברית עם מספרים 456 ו-English words. הסימניה תחליף את כיוון הטקסט הזה כאשר תשתמש בה בכל דף אינטרנט.</p>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>📋 How to Use</h3>
+            <ol>
+                <li><strong>Drag</strong> the "🔄 RTL Toggle" button above to your browser's bookmarks bar</li>
+                <li><strong>Navigate</strong> to any webpage where you want to toggle text direction</li>
+                <li><strong>Click</strong> the bookmarklet in your bookmarks bar</li>
+                <li><strong>Watch</strong> as the page switches between LTR and RTL direction!</li>
+            </ol>
+        </div>
+
+        <div class="instructions">
+            <h3>✨ Features</h3>
+            <ul style="margin-left: 20px; line-height: 1.8;">
+                <li>Toggles between Left-to-Right (LTR) and Right-to-Left (RTL) text direction</li>
+                <li>Shows a visual notification when toggled</li>
+                <li>Remembers your preference using localStorage</li>
+                <li>Works on any webpage</li>
+                <li>No installation or permissions required</li>
+                <li>Privacy-focused - no data collection</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Demo functionality to show RTL/LTR toggle
+        let isRTL = false;
+        
+        function toggleDemo() {
+            const demoText = document.getElementById('demoText');
+            isRTL = !isRTL;
+            
+            if (isRTL) {
+                demoText.classList.add('rtl');
+                demoText.innerHTML = `
+                    <h4>דוגמה לטקסט מעורב</h4>
+                    <p>זהו טקסט בעברית עם מספרים 456 ו-English words. הסימניה תחליף את כיוון הטקסט הזה כאשר תשתמש בה בכל דף אינטרנט.</p>
+                    <p>This is English text with numbers 123 and Hebrew words עברית. The bookmarklet will toggle the direction of this text when used on any webpage.</p>
+                `;
+            } else {
+                demoText.classList.remove('rtl');
+                demoText.innerHTML = `
+                    <h4>Mixed Text Example</h4>
+                    <p>This is English text with numbers 123 and Hebrew words עברית. The bookmarklet will toggle the direction of this text when used on any webpage.</p>
+                    <p>זהו טקסט בעברית עם מספרים 456 ו-English words. הסימניה תחליף את כיוון הטקסט הזה כאשר תשתמש בה בכל דף אינטרנט.</p>
+                `;
+            }
+        }
+        
+        // Auto-toggle demo every 4 seconds
+        setInterval(toggleDemo, 4000);
+        
+        // Enhanced drag functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookmarkletBtn = document.querySelector('.bookmarklet-btn');
+            
+            bookmarkletBtn.addEventListener('dragstart', function(e) {
+                e.dataTransfer.setData('text/plain', bookmarkletBtn.href);
+                e.dataTransfer.setData('text/html', bookmarkletBtn.outerHTML);
+                bookmarkletBtn.style.opacity = '0.7';
+            });
+            
+            bookmarkletBtn.addEventListener('dragend', function(e) {
+                bookmarkletBtn.style.opacity = '1';
+            });
+            
+            // Show success message when clicked
+            bookmarkletBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #4CAF50;
+                    color: white;
+                    padding: 15px 25px;
+                    border-radius: 30px;
+                    z-index: 99999;
+                    font-family: Arial, sans-serif;
+                    font-size: 16px;
+                    font-weight: bold;
+                    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+                    animation: slideIn 0.3s ease;
+                `;
+                notification.textContent = '✅ Drag this button to your bookmarks bar!';
+                document.body.appendChild(notification);
+                
+                setTimeout(function() {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(function() {
+                        if (notification.parentNode) {
+                            notification.remove();
+                        }
+                    }, 300);
+                }, 3000);
+            });
+        });
+        
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
